@@ -22,9 +22,22 @@ jobs:
         DOCKER_HUB_USR: ${{ secrets.DOCKER_HUB_USR }}
         DOCKER_HUB_PSW: ${{ secrets.DOCKER_HUB_PSW }}
       run: |
-        echo "Iniciando Login"
         docker login -u $DOCKER_HUB_USR -p $DOCKER_HUB_PSW
-        echo "Fin del Login"
+        
+    - name: Docker Image Create
+      env:
+        DOCKER_IMG_NAME: ${{ secrets.DOCKER_IMG_NAME }}
+        DOCKER_IMG_TAG: ${{ secrets.DOCKER_IMG_TAG }}
+      run: |
+        docker build -t $DOCKER_IMG_NAME:$DOCKER_IMG_TAG .
+
+    - name: Docker Image Push
+      env:
+        DOCKER_IMG_NAME: ${{ secrets.DOCKER_IMG_NAME }}
+        DOCKER_IMG_TAG: ${{ secrets.DOCKER_IMG_TAG }}
+      run: |
+        docker push $DOCKER_IMG_NAME:$DOCKER_IMG_TAG .
+      
     
 #    - name: Build the Docker image
 #      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
