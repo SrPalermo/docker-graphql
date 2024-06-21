@@ -27,16 +27,14 @@ jobs:
     - name: Docker Image Create
       env:
         DOCKER_IMG_NAME: ${{ secrets.DOCKER_IMG_NAME }}
-        DOCKER_IMG_TAG: ${{ secrets.DOCKER_IMG_TAG }}
       run: |
-        docker build -t $DOCKER_IMG_NAME:$DOCKER_IMG_TAG .
+        docker build -t ${DOCKER_IMG_NAME}:0.0.2 .
 
     - name: Docker Image Push
       env:
         DOCKER_IMG_NAME: ${{ secrets.DOCKER_IMG_NAME }}
-        DOCKER_IMG_TAG: ${{ secrets.DOCKER_IMG_TAG }}
       run: |
-        docker push $DOCKER_IMG_NAME:$DOCKER_IMG_TAG .
+        docker push ${DOCKER_IMG_NAME}:0.0.2 .
       
     
 #    - name: Build the Docker image
