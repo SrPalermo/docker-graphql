@@ -28,13 +28,13 @@ jobs:
       env:
         DOCKER_IMG_NAME: ${{ secrets.DOCKER_IMG_NAME }}
       run: |
-        docker build -t ${DOCKER_IMG_NAME}:0.0.2 .
+        docker build -t ${DOCKER_IMG_NAME}:0.0.3 .
 
     - name: Docker Image Push
       env:
         DOCKER_IMG_NAME: ${{ secrets.DOCKER_IMG_NAME }}
       run: |
-        docker push ${DOCKER_IMG_NAME}:0.0.2 .
+        docker push ${DOCKER_IMG_NAME}:0.0.3
       
     
 #    - name: Build the Docker image
